@@ -1,0 +1,26 @@
+{
+  "name": "face-recognition-app-backend",
+  "version": "1.0.0",
+  "description": "Building the API endpoints for the face recognition app.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adewale2018/face-recognition-app-backend.git"
+  },
+  "author": "Saheed Adewale Shittu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adewale2018/face-recognition-app-backend/issues"
+  },
+  "homepage": "https://github.com/adewale2018/face-recognition-app-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
