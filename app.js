@@ -28,7 +28,7 @@ const database = {
 }
 
 app.get('/', (req, res) => {
-  res.send('<h1>APP IS UP AND RUNNING...</h1>');
+  res.json(database.users);
 });
 
 app.post('/signin', (req, res) => {
@@ -52,6 +52,34 @@ app.post('/register', (req, res) => {
   res.status(200).json(database.users[database.users.length - 1]);
 });
 
+app.get('/profile/:id', (req, res) => {
+  const { id } = req.params;
+  let found = false;
+  database.users.forEach(user => {
+    if(user.id === id) {
+      found = true;
+      return res.json(user);
+    }
+  })
+  if(!found) {
+    res.status(400).json('Sorry, the user does not exist');
+  }
+});
+
+app.put('/image', (req, res) => {
+  const { id } = req.body;
+  let found = false;
+  database.users.forEach(user => {
+    if(user.id === id) {
+      found = true;
+      user.entries++
+      return res.json(user.entries);
+    }
+  })
+  if(!found) {
+    res.status(400).json('Sorry, something went wrong!');
+  }
+});
 
 const PORT = 5000;
 app.listen(PORT, () => {
