@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt  = require('bcrypt');
+const saltRounds = 10;
 
 const app = express();
 
@@ -32,6 +34,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signin', (req, res) => {
+  bcrypt.compare('abiola129', '$2b$10$sPqnVhh.M62K5ykPowHikuTXVe2rqjOemz2Cxebn..srrNOABtnqi', function(err, res) {
+  console.log('Correct::', res);
+  });
+  bcrypt.compare('abiola12999', '$2b$10$sPqnVhh.M62K5ykPowHikuTXVe2rqjOemz2Cxebn..srrNOABtnqi', function(err, res) {
+    console.log('INCorrect::', res);
+    });
   if((req.body.name === database.users[0].name) && (req.body.email === database.users[0].email)) {
     res.json('Success');
   } else {
@@ -41,6 +49,9 @@ app.post('/signin', (req, res) => {
 
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
+  bcrypt.hash(password, saltRounds, function(err, hash) {
+    console.log('Hash:::', hash);
+  });
   database.users.push({
     id: '125',
     name: name,
